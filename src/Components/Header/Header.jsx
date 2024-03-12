@@ -1,5 +1,6 @@
 import '../Header/Header.scss';
 import Logo from "../../assets/Logo/Logo.png"
+import {Link} from "react-router-dom";
 function Header() {
 
   function handleLogoClick(e) {
@@ -28,9 +29,9 @@ function Header() {
         <div className="headercontainer">
           <nav id="navigation">
             <div className="Logocontainer">
-              <a to='/' className="logo" onClick={handleLogoClick}>
+              <Link to='/' className="logo" onClick={handleLogoClick}>
                     <img src={Logo} alt="" />
-              </a>
+              </Link>
             </div>
 
             <a aria-label="mobile menu" className="nav-toggle" onClick={handleNavToggleClick}>
@@ -40,25 +41,25 @@ function Header() {
             </a>
             <ul className="menu-left">
               <li>
-                <a to="/" onClick={handleMenuItemClick}>
+                <Link to="/" onClick={handleMenuItemClick}>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-              <a to="/about" onClick={handleMenuItemClick}>
+              <Link to="/about" onClick={handleMenuItemClick}>
                   About
-                </a>
+                </Link>
               </li>
               <li>
-              <a to="/project" onClick={handleMenuItemClick}>
-                  Projects
-                </a>
-              </li>
-              {/* <li>
-              <a to="/contact" onClick={handleMenuItemClick}>
+              <Link to="/contact" onClick={handleMenuItemClick}>
                   Contact
-                </a>
-              </li> */}
+                </Link>
+              </li>
+              <li>
+              <Link to="/location" onClick={handleMenuItemClick}>
+                  Location
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
