@@ -1,58 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import '../Header/Header.scss';
-import {Link} from "react-router-dom";
-
+import Logo from "../../assets/Logo/Logo.png"
 function Header() {
-  const [didScroll, setDidScroll] = useState(false);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const delta = 4;
-  const [navbarHeight, setNavbarHeight] = useState(0);
-
-  useEffect(() => {
-    function hasScrolled() {
-      const st = window.scrollY;
-
-      if (Math.abs(lastScrollTop - st) <= delta) return;
-
-      if (st > lastScrollTop && st > navbarHeight) {
-        document.querySelector('header')?.classList.remove('show-nav');
-        document.querySelector('header')?.classList.add('hide-nav');
-        document.querySelector('.nav-toggle')?.classList.remove('open');
-        document.querySelector('.menu-left')?.classList.remove('collapse');
-      } else {
-        if (st + window.innerHeight < document.body.scrollHeight) {
-          document.querySelector('header')?.classList.remove('hide-nav');
-          document.querySelector('header')?.classList.add('show-nav');
-        }
-      }
-
-      setLastScrollTop(st);
-    }
-
-    function scrollHandler() {
-      setDidScroll(true);
-    }
-
-    window.addEventListener('scroll', scrollHandler);
-
-    // Measure the navbarHeight when the component mounts
-    const headerElement = document.querySelector('header');
-    if (headerElement) {
-      setNavbarHeight(headerElement.offsetHeight);
-    }
-
-    const scrollInterval = setInterval(() => {
-      if (didScroll) {
-        hasScrolled();
-        setDidScroll(false);
-      }
-    }, 250);
-
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-      clearInterval(scrollInterval);
-    };
-  }, [didScroll, lastScrollTop, navbarHeight]);
 
   function handleLogoClick(e) {
     e.preventDefault();
@@ -80,13 +28,9 @@ function Header() {
         <div className="headercontainer">
           <nav id="navigation">
             <div className="Logocontainer">
-              <Link to='/' className="logo" onClick={handleLogoClick}>
-                <div className="stack" style={{ "--stacks": 3 }}>
-                  <span style={{ "--index": 0 }}>&lt;Saif Ur Rehman /&gt;</span>
-                  <span style={{ "--index": 1 }}>&lt;Saif Ur Rehman /&gt;</span>
-                  <span style={{ "--index": 2 }}>&lt;Saif Ur Rehman /&gt;</span>
-                </div>
-              </Link>
+              <a to='/' className="logo" onClick={handleLogoClick}>
+                    <img src={Logo} alt="" />
+              </a>
             </div>
 
             <a aria-label="mobile menu" className="nav-toggle" onClick={handleNavToggleClick}>
@@ -96,24 +40,24 @@ function Header() {
             </a>
             <ul className="menu-left">
               <li>
-                <Link to="/" onClick={handleMenuItemClick}>
+                <a to="/" onClick={handleMenuItemClick}>
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-              <Link to="/about" onClick={handleMenuItemClick}>
+              <a to="/about" onClick={handleMenuItemClick}>
                   About
-                </Link>
+                </a>
               </li>
               <li>
-              <Link to="/project" onClick={handleMenuItemClick}>
+              <a to="/project" onClick={handleMenuItemClick}>
                   Projects
-                </Link>
+                </a>
               </li>
               {/* <li>
-              <Link to="/contact" onClick={handleMenuItemClick}>
+              <a to="/contact" onClick={handleMenuItemClick}>
                   Contact
-                </Link>
+                </a>
               </li> */}
             </ul>
           </nav>
