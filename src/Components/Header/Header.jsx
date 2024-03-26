@@ -64,7 +64,6 @@ function Header() {
           </nav>
         </div>
       </header>
-      {/* Your remaining JSX content */}
     </div>
   );
 }
